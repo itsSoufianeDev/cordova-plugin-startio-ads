@@ -51,10 +51,11 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       cordova.getActivity().runOnUiThread(new Runnable() {
         public void run() {
           String appId = args.optString(0);
+          boolean userConsent = args.optBoolean(3);
           boolean disableReturnAd = args.optBoolean(1);
           boolean disableSplashAd = args.optBoolean(2);
 
-          initStartApp(appId, disableReturnAd, disableSplashAd, PUBLIC_CALLBACKS);
+          initStartApp(appId, disableReturnAd, disableSplashAd, userConsent, PUBLIC_CALLBACKS);
         }
       });
       return true;
@@ -103,11 +104,11 @@ public class StartAppAdsPlugin extends CordovaPlugin {
     return false;
   }
 
-  public void initStartApp(String appID, Boolean disableReturnAd, Boolean disableSplashAd, CallbackContext callbackContext) {
-    Log.d(TAG, "Initializing StartApp SDK with ID: " +  appID + " ReturnAd: " + disableReturnAd + " SplashAd: " + disableSplashAd);
+  public void initStartApp(String appID, Boolean disableReturnAd, Boolean disableSplashAd, Boolean userConsent, CallbackContext callbackContext) {
+    Log.d(TAG, "Initializing StartApp SDK with ID: " +  appID + " ReturnAd: " + disableReturnAd + " SplashAd: " + disableSplashAd + " UserConsent: " + userConsent);
     startAppAd = new StartAppAd(cordova.getActivity());
     StartAppSDK.init(cordova.getActivity(), appID, disableReturnAd);
-    StartAppSDK.setUserConsent(cordova.getActivity(), "pas", System.currentTimeMillis(), false);
+    StartAppSDK.setUserConsent(cordova.getActivity(), "pas", System.currentTimeMillis(), userConsent);
 
     if (disableSplashAd) {
       StartAppAd.disableSplash();

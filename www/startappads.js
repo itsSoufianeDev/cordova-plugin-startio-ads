@@ -3,12 +3,12 @@ var exec = require('cordova/exec');
 
 var StartAppAds = {
 	init: function(appid, options) {
-		var DEFAULT_OPTIONS = { returnAd: true, splashAd: true };
+		var DEFAULT_OPTIONS = { returnAd: true, splashAd: true, userConsent: false };
 
 		if (typeof options !== "object") { options = DEFAULT_OPTIONS; }
 		options = Object.assign(DEFAULT_OPTIONS, options);
 
-		exec(function(){}, function(){}, "StartAppAdsPlugin", "initStartApp", [appid, !options.returnAd, !options.splashAd]);
+		exec(function(){}, function(){}, "StartAppAdsPlugin", "initStartApp", [appid, !options.returnAd, !options.splashAd, options.userConsent]);
 	},
 	showBanner: function() {
 		exec(function(){}, function(){}, "StartAppAdsPlugin", "showBanner", []);
