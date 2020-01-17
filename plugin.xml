@@ -57,6 +57,6 @@
           </feature>
       </config-file>
       <source-file src="src/android/StartAppAdsPlugin.java" target-dir="src/startapp/ads/" />
-      <source-file src="src/android/StartAppInApp-4.2.2.jar" target-dir="libs" />
+      <source-file src="src/android/StartAppInApp-4.3.0.jar" target-dir="libs" />
    </platform>
 </plugin>
