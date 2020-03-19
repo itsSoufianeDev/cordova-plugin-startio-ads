@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-startapp-ads",
-  "version": "1.1.0",
+  "version": "1.1.6",
   "cordova": {
     "id": "ccordova-plugin-startapp-ads",
     "platforms": [
