@@ -147,6 +147,12 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         Log.d(TAG, "Banner clicked!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.clicked');");
     	}
+
+      @Override
+      public void onImpression(View banner) {
+        Log.d(TAG, "Banner impression!");
+        cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.impression');");
+      }
     });
 
     View view = cWebView.getView();
