@@ -13,6 +13,9 @@ var StartAppAds = {
 	setConsent: function(consented) {
 		exec(function(){}, function(){}, "StartAppAdsPlugin", "setConsent", [ consented ]);
 	},
+	loadBanner: function() {
+		exec(function(){}, function(){}, "StartAppAdsPlugin", "loadBanner", []);
+	},
 	showBanner: function() {
 		exec(function(){}, function(){}, "StartAppAdsPlugin", "showBanner", []);
 	},

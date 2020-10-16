@@ -1,71 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-startapp-ads"
-    version="1.1.7">
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-startapp-ads" version="1.1.7"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0">
     <name>StartApp Ads</name>
-    <description></description>
+    <description />
     <license>MIT</license>
     <keywords>startapp, ads, android, ios, plugin</keywords>
     <repo>https://github.com/itsSoufianeDev/startapp-ionic-cordova-plugin.git</repo>
     <issue>https://github.com/itsSoufianeDev/startapp-ionic-cordova-plugin/issues</issue>
-
-    <js-module src="www/startappads.js" name="StartAppAds">
-      <runs/>
-      <clobbers target="StartAppAds" />
+    <js-module name="StartAppAds" src="www/startappads.js">
+        <runs />
+        <clobbers target="StartAppAds" />
     </js-module>
-
     <engines>
-        <engine name="cordova" version=">=7.0.0" />
-        <engine name="cordova-android" version=">=6.0.0" />
+        <engine name="cordova" version="&gt;=7.0.0" />
+        <engine name="cordova-android" version="&gt;=6.0.0" />
     </engines>
-
     <platform name="android">
-      <config-file target="AndroidManifest.xml" mode="merge" parent="/manifest/application">
-        <activity
-         android:name="com.startapp.android.publish.adsCommon.consent.ConsentActivity"
-         android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-         android:theme="@android:style/Theme.Translucent"/>
+        <config-file mode="merge" parent="/manifest/application" target="AndroidManifest.xml">
+            <provider
+             android:name="com.startapp.sdk.adsbase.StartAppInitProvider"
+             android:authorities="${applicationId}.startappinitprovider"
+             android:exported="false" />
 
-        <activity
-         android:name="com.startapp.android.publish.ads.list3d.List3DActivity"
-         android:theme="@android:style/Theme"/>
+            <activity
+             android:name="com.startapp.sdk.adsbase.consent.ConsentActivity"
+             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+             android:theme="@android:style/Theme.Translucent"/>
 
-        <activity
-         android:name="com.startapp.android.publish.adsCommon.activities.OverlayActivity"
-         android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-         android:theme="@android:style/Theme.Translucent"/>
+            <activity
+             android:name="com.startapp.sdk.ads.list3d.List3DActivity"
+             android:theme="@android:style/Theme"/>
 
-        <activity
-         android:name="com.startapp.android.publish.adsCommon.activities.FullScreenActivity"
-         android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-         android:theme="@android:style/Theme"/>
+            <activity
+             android:name="com.startapp.sdk.adsbase.activities.OverlayActivity"
+             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+             android:theme="@android:style/Theme.Translucent"/>
 
-        <service android:name="com.startapp.android.publish.common.metaData.PeriodicMetaDataService"/>
-        <service android:name="com.startapp.android.publish.common.metaData.InfoEventService"/>
+            <activity
+             android:name="com.startapp.sdk.adsbase.activities.FullScreenActivity"
+             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+             android:theme="@android:style/Theme"/>
 
-        <service
-         android:name="com.startapp.android.publish.common.metaData.PeriodicJobService"
-         android:permission="android.permission.BIND_JOB_SERVICE" />
+            <service android:name="com.startapp.sdk.adsbase.InfoEventService" />
 
-        <receiver android:name="com.startapp.android.publish.common.metaData.BootCompleteListener">
-          <intent-filter>
-            <action android:name="android.intent.action.BOOT_COMPLETED"/>
-          </intent-filter>
-        </receiver>
-      </config-file>
-      <config-file target="AndroidManifest.xml" mode="merge" parent="/*">
-        <uses-permission android:name="android.permission.INTERNET" />
-      	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-      	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-      </config-file>
-      <config-file target="res/xml/config.xml" parent="/*">
-          <feature name="StartAppAdsPlugin">
-              <param name="android-package" value="com.startapp.cordova.ad.StartAppAdsPlugin"/>
-              <param name="onload" value="true" />
-          </feature>
-      </config-file>
-      <source-file src="src/android/StartAppAdsPlugin.java" target-dir="src/startapp/ads/" />
-      <source-file src="src/android/StartAppInApp-4.4.1.jar" target-dir="libs" />
-   </platform>
+            <service
+             android:name="com.startapp.sdk.adsbase.PeriodicJobService"
+             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+            <receiver android:name="com.startapp.sdk.adsbase.remoteconfig.BootCompleteListener">
+             <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+             </intent-filter>
+            </receiver>
+
+        </config-file>
+
+        <config-file mode="merge" parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+        </config-file>
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="StartAppAdsPlugin">
+                <param name="android-package" value="com.startapp.cordova.ad.StartAppAdsPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/StartAppAdsPlugin.java" target-dir="src/startapp/ads/" />
+        <source-file src="src/android/StartAppInApp-4.6.3.jar" target-dir="libs" />
+    </platform>
+
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="StartAppAds">
+                <param name="ios-package" value="StartAppAds" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/StartAppAds.h" />
+        <source-file src="src/ios/StartAppAds.m" />
+
+        <framework src="src/ios/StartApp.framework" custom="true" />
+        <!--<framework src="StoreKit.framework" weak="true" />
+        <framework src="Foundation.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="UIKit.framework" />-->
+
+    </platform>
 </plugin>

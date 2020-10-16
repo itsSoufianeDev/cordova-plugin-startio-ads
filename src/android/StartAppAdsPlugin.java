@@ -16,18 +16,14 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.startapp.android.publish.ads.nativead.NativeAdDetails;
-import com.startapp.android.publish.ads.nativead.NativeAdPreferences;
-import com.startapp.android.publish.ads.nativead.StartAppNativeAd;
-import com.startapp.android.publish.adsCommon.Ad;
-import com.startapp.android.publish.ads.banner.Banner;
-import com.startapp.android.publish.ads.banner.BannerListener;
-import com.startapp.android.publish.adsCommon.StartAppAd;
-import com.startapp.android.publish.adsCommon.StartAppAd.AdMode;
-import com.startapp.android.publish.adsCommon.StartAppSDK;
-import com.startapp.android.publish.adsCommon.VideoListener;
-import com.startapp.android.publish.adsCommon.adListeners.AdDisplayListener;
-import com.startapp.android.publish.adsCommon.adListeners.AdEventListener;
+import com.startapp.sdk.adsbase.Ad;
+import com.startapp.sdk.adsbase.StartAppAd;
+import com.startapp.sdk.adsbase.StartAppSDK;
+import com.startapp.sdk.adsbase.VideoListener;
+import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
+
+import com.startapp.sdk.ads.banner.Banner;
+import com.startapp.sdk.ads.banner.BannerListener;
 
 public class StartAppAdsPlugin extends CordovaPlugin {
 
@@ -65,6 +61,14 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         public void run() {
           boolean userConsent = args.optBoolean(0);
           setConsent(userConsent, PUBLIC_CALLBACKS);
+        }
+      });
+      return true;
+    }
+    else if (action.equals("loadBanner")) {
+      cordova.getActivity().runOnUiThread(new Runnable() {
+        public void run() {
+          loadBanner(PUBLIC_CALLBACKS);
         }
       });
       return true;
@@ -128,25 +132,25 @@ public class StartAppAdsPlugin extends CordovaPlugin {
     StartAppSDK.setUserConsent(cordova.getActivity(), "pas", System.currentTimeMillis(), consented);
   }
 
-  public void showBanner(CallbackContext callbackContext) {
+  public void loadBanner(CallbackContext callbackContext){
     startAppBanner = new Banner(cordova.getActivity(), new BannerListener() {
-    	@Override
-    	public void onReceiveAd(View banner) {
+      @Override
+      public void onReceiveAd(View banner) {
         Log.d(TAG, "Banner has been loaded!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.load');");
-    	}
+      }
 
-    	@Override
-    	public void onFailedToReceiveAd(View banner) {
+      @Override
+      public void onFailedToReceiveAd(View banner) {
         Log.d(TAG, "Banner load failed!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.load_fail');");
-    	}
+      }
 
-    	@Override
-    	public void onClick(View banner) {
+      @Override
+      public void onClick(View banner) {
         Log.d(TAG, "Banner clicked!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.clicked');");
-    	}
+      }
 
       @Override
       public void onImpression(View banner) {
@@ -154,7 +158,9 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.impression');");
       }
     });
+  }
 
+  public void showBanner(CallbackContext callbackContext) {
     View view = cWebView.getView();
     ViewGroup wvParentView = (ViewGroup) view.getParent();
 
