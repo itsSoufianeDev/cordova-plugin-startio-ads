@@ -21,6 +21,7 @@ import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.StartAppSDK;
 import com.startapp.sdk.adsbase.VideoListener;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
+import com.startapp.sdk.adsbase.adlisteners.AdEventListener.AdDisplayListener;
 
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
@@ -243,7 +244,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       }
     });
 
-    rewardedVideo.loadAd(AdMode.REWARDED_VIDEO, new AdEventListener() {
+    rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
       @Override
       public void onReceiveAd(Ad arg0) {
           Log.d(TAG, "Reward Video loaded!");
