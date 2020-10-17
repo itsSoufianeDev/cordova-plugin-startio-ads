@@ -33,7 +33,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
   private StartAppAd startAppAd;
   private CordovaWebView cWebView;
   private ViewGroup parentView;
-  private Banner startAppBanner;
+  private Banner startAppBanner = null;
   private StartAppAd rewardedVideo = null;
 
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -170,6 +170,11 @@ public class StartAppAdsPlugin extends CordovaPlugin {
   }
 
   public void showBanner(CallbackContext callbackContext) {
+    if(startAppBanner == null){
+      cWebView.loadUrl("javascript:console.warn('The banner you tried to load is not yet loaded');");
+      return;
+    }
+
     View view = cWebView.getView();
     ViewGroup wvParentView = (ViewGroup) view.getParent();
 
@@ -188,7 +193,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         parentView.addView(startAppBanner);
     }
 
-    parentView.bringToFront();
+    //parentView.bringToFront();
     parentView.requestLayout();
     parentView.requestFocus();
   }
@@ -198,6 +203,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         startAppBanner.hideBanner();
         startAppBanner.setVisibility(View.GONE);
         parentView = null;
+        startAppBanner = null;
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.hide');");
     }
   }
