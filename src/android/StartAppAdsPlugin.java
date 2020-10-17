@@ -48,7 +48,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       cordova.getActivity().runOnUiThread(new Runnable() {
         public void run() {
           String appId = args.optString(0);
-          
+
           boolean disableReturnAd = args.optBoolean(1);
           boolean disableSplashAd = args.optBoolean(2);
           boolean testAdsEnabled = args.optBoolean(3);
@@ -165,6 +165,8 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       }
     });
     cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.load.req');");
+
+    startAppBanner.loadAd();
   }
 
   public void showBanner(CallbackContext callbackContext) {
