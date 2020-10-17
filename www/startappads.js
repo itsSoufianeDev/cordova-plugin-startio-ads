@@ -2,13 +2,13 @@ var cordova = require('cordova');
 var exec = require('cordova/exec');
 
 var StartAppAds = {
-	init: function(appid, options) {
+	init: function(appid, options, testAds) {
 		var DEFAULT_OPTIONS = { returnAd: true, splashAd: true };
 
 		if (typeof options !== "object") { options = DEFAULT_OPTIONS; }
 		options = Object.assign(DEFAULT_OPTIONS, options);
 
-		exec(function(){}, function(){}, "StartAppAdsPlugin", "initStartApp", [ appid, !options.returnAd, !options.splashAd ]);
+		exec(function(){}, function(){}, "StartAppAdsPlugin", "initStartApp", [ appid, !options.returnAd, !options.splashAd, testAds ]);
 	},
 	setConsent: function(consented) {
 		exec(function(){}, function(){}, "StartAppAdsPlugin", "setConsent", [ consented ]);
