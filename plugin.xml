@@ -17,39 +17,37 @@
     </engines>
     <platform name="android">
         <config-file mode="merge" parent="/manifest/application" target="AndroidManifest.xml">
+
+            <meta-data android:name="com.startapp.sdk.209797308" android:value="startapp_app_id" />
+        
             <provider
              android:name="com.startapp.sdk.adsbase.StartAppInitProvider"
              android:authorities="${applicationId}.startappinitprovider"
              android:exported="false" />
-
+             
             <activity
              android:name="com.startapp.sdk.adsbase.consent.ConsentActivity"
              android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
              android:theme="@android:style/Theme.Translucent"/>
-
+             
             <activity
              android:name="com.startapp.sdk.ads.list3d.List3DActivity"
              android:theme="@android:style/Theme"/>
-
+             
             <activity
-             android:name="com.startapp.sdk.adsbase.activities.OverlayActivity"
+             android:name="com.startapp.sdk.ads.interstitials.OverlayActivity"
              android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
              android:theme="@android:style/Theme.Translucent"/>
-
-            <activity
-             android:name="com.startapp.sdk.adsbase.activities.FullScreenActivity"
-             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-             android:theme="@android:style/Theme"/>
-
-            <service android:name="com.startapp.sdk.adsbase.InfoEventService" />
-
+             
+            <service android:name="com.startapp.sdk.cachedservice.BackgroundService" />
+            
             <service
-             android:name="com.startapp.sdk.adsbase.PeriodicJobService"
+             android:name="com.startapp.sdk.jobs.SchedulerService"
              android:permission="android.permission.BIND_JOB_SERVICE" />
-
+             
             <receiver android:name="com.startapp.sdk.adsbase.remoteconfig.BootCompleteListener">
              <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+              <action android:name="android.intent.action.BOOT_COMPLETED"/>
              </intent-filter>
             </receiver>
 
@@ -60,6 +58,8 @@
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+            <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /><queries><intent><action android:name="android.intent.action.MAIN" /></intent></queries> />
+            <uses-permission android:name="android.permission.Ad_ID" />
         </config-file>
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="StartAppAdsPlugin">
@@ -68,7 +68,7 @@
             </feature>
         </config-file>
         <source-file src="src/android/StartAppAdsPlugin.java" target-dir="src/startapp/ads/" />
-        <source-file src="src/android/StartAppInApp-4.8.10.jar" target-dir="libs" />
+        <source-file src="src/android/StartAppInApp-4.9.1.jar" target-dir="libs" />
     </platform>
 
     <platform name="ios">
