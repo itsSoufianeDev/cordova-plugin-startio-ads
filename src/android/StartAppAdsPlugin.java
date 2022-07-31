@@ -294,9 +294,13 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         }
         @Override
         public void adDisplayed(Ad ad) {
+          Log.d(TAG, "Reward Video displayed!");
+          cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.displayed');");
         }
         @Override
         public void adNotDisplayed(Ad ad) {
+          Log.d(TAG, "Rewarded Video not displayed");
+          cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.not_displayed');");
         }
       });
     } else {

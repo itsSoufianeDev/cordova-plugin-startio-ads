@@ -18,7 +18,7 @@
     <platform name="android">
         <config-file mode="merge" parent="/manifest/application" target="AndroidManifest.xml">
 
-            <meta-data android:name="com.startapp.sdk.209797308" android:value="startapp_app_id" />
+            <meta-data android:name="com.startapp.sdk.APPLICATION_ID" android:value="209797308" />
         
             <provider
              android:name="com.startapp.sdk.adsbase.StartAppInitProvider"
