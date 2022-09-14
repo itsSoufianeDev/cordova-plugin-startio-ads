@@ -166,7 +166,8 @@ public class StartAppAdsPlugin extends CordovaPlugin {
     });
     cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.load.req');");
 
-    startAppBanner.loadAd();
+    // Forcing specefic banner dimensions to prevent other formats from loading
+    startAppBanner.loadAd(320, 50); // Standard Banner
   }
 
   public void showBanner(CallbackContext callbackContext) {

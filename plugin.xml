@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-startapp-ads" version="1.1.9"
+<plugin id="cordova-plugin-startapp-ads" version="1.2.1"
     xmlns="http://apache.org/cordova/ns/plugins/1.0">
     <name>StartApp Ads</name>
     <description />
