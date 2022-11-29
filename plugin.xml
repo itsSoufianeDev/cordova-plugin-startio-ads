@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-startapp-ads" version="1.2.1"
+<plugin id="cordova-plugin-startapp-ads" version="1.3.0"
     xmlns="http://apache.org/cordova/ns/plugins/1.0">
     <name>StartApp Ads</name>
     <description />
@@ -45,7 +45,7 @@
              android:name="com.startapp.sdk.jobs.SchedulerService"
              android:permission="android.permission.BIND_JOB_SERVICE" />
              
-            <receiver android:name="com.startapp.sdk.adsbase.remoteconfig.BootCompleteListener">
+            <receiver android:name="com.startapp.sdk.adsbase.remoteconfig.BootCompleteListener" android:exported="true">
              <intent-filter>
               <action android:name="android.intent.action.BOOT_COMPLETED"/>
              </intent-filter>
