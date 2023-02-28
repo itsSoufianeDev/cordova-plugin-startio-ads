@@ -116,6 +116,15 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       });
       return true;
     }
+    else if(action.equals("setIABUSPrivacyString")) {
+      cordova.getActivity().runOnUiThread(new Runnable() {
+        public void run() {
+          String IABString = args.optString(0);
+          setIABUSPrivacyString(IABString, PUBLIC_CALLBACKS);
+        }
+      });
+      return true;
+    }
     return false;
   }
 
@@ -136,6 +145,11 @@ public class StartAppAdsPlugin extends CordovaPlugin {
   public void setConsent(Boolean consented, CallbackContext callbackContext) {
     Log.d(TAG, "Setting Consent To: " + consented);
     StartAppSDK.setUserConsent(cordova.getActivity(), "pas", System.currentTimeMillis(), consented);
+  }
+
+  public void setIABUSPrivacyString(String IABString, CallbackContext callbackContext) {
+    Log.d(TAG, "Setting IAB US Privacy To: " + IABString);
+    StartAppSDK.getExtras(cordova.getActivity()).edit().putString("IABUSPrivacy_String", IABString).apply();
   }
 
   public void loadBanner(CallbackContext callbackContext){

@@ -13,6 +13,9 @@ var StartAppAds = {
 	setConsent: function(consented) {
 		exec(function(){}, function(){}, "StartAppAdsPlugin", "setConsent", [ consented ]);
 	},
+	setIABUSPrivacyString: function(IABString){
+		exec(function(){}, function(){}, "StartAppAdsPlugin", "setIABUSPrivacyString", [ IABString ]);
+	},
 	loadBanner: function() {
 		exec(function(){}, function(){}, "StartAppAdsPlugin", "loadBanner", []);
 	},
