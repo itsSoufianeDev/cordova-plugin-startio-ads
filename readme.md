@@ -3,15 +3,14 @@
 An *UNOFFICIAL* free to use [Start.io](https://www.start.io/) Cordova plugin that allows you to display ads on your cordova/ionic app.
 
 ---
-<br/>
 
 ## Platforms support:
 | OS | Integrated | SDK version | Supported ad types | 
 |----|------------| ------------------ |-------------|
-| **Android** | YES :white_check_mark: | 4.10.2 | Banner, Rewarded Video, Interstitial |
-| **iOS** | NO* :x: | N/A | N/A |
+| **Android** | **YES** :white_check_mark: | 4.10.2 | Banner, Rewarded Video, Interstitial |
+| **iOS** | **NO*** :x: | N/A | N/A |
 
-* *** Only Android is supported for the moment, I will do my best to add iOS soon.***
+\* **Only Android is supported for the moment, I will do my best to add iOS soon.**
 
 <br/>
 
@@ -50,7 +49,7 @@ cordova plugin remove cordova-plugin-startio-ads
 
 ## Usage
 
-The plugin exports a JS variable named `StartIO`, Angular won't let you access this variable that's why you will need to declare it on each page you are willing to use the plugin on.
+The plugin exports a JS variable named `StartIO`, Typescript (if you're using Angular) won't let you access this variable that's why you will need to declare it on each page you are willing to use the plugin on.
 
 ```js
 import { Component, OnInit } from '@angular/core'
@@ -58,6 +57,7 @@ import { Component, OnInit } from '@angular/core'
 
 declare var StartIO: any
 ```
+<br/>
 
 ### 1. Initialisation
 ```js
@@ -67,6 +67,7 @@ const testAds = true // enable test ads, must be set to false on production app
 
 StartIO.init(appID, options, testAds)
 ```
+<br/>
 
 ### 2. GDPR Consent / CCPA Compliance
 
@@ -76,6 +77,8 @@ The plugin allows you to pass user consent to the SDK, refer to StartIO docs for
 StartIO.setConsent(true) // GDPR
 StartIO.setIABUSPrivacy("1YNN") // CCPA
 ```
+<br/>
+
 ### 3. Banner Ads
 
 To show a Banner ad you need to call loadBanner() and listen to the `startio.banner.load` event then call showBanner().<br/>
@@ -104,6 +107,8 @@ StartIO.hideBanner()
 | startio.banner.impression | triggered on Banner impression |
 | startio.banner.hide | triggered when the Banner is hidden |
 
+<br/>
+
 ### 4. Interstitial Ads
 
 ```js
@@ -120,6 +125,7 @@ StartIO.showInterstitial()
 | startio.interstitial.clicked | triggered when an Interstitial is clicked |
 | startio.interstitial.closed | triggered when Interstitial is closed |
 
+<br/>
 
 ### 5. Rewarded Videos Ads
 
