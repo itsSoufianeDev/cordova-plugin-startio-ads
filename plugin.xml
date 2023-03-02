@@ -1,15 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-startapp-ads" version="1.3.1"
+<plugin id="cordova-plugin-startio-ads" version="1.3.2"
     xmlns="http://apache.org/cordova/ns/plugins/1.0">
-    <name>StartApp Ads</name>
+    <name>StartIO Ads(formerly StartApp Ads)</name>
     <description />
     <license>MIT</license>
     <keywords>startapp, ads, android, ios, plugin</keywords>
-    <repo>https://github.com/itsSoufianeDev/startapp-ionic-cordova-plugin.git</repo>
-    <issue>https://github.com/itsSoufianeDev/startapp-ionic-cordova-plugin/issues</issue>
+    <repo>https://github.com/itsSoufianeDev/cordova-plugin-startio-ads.git</repo>
+    <issue>https://github.com/itsSoufianeDev/cordova-plugin-startio-ads/issues</issue>
     <js-module name="StartAppAds" src="www/startappads.js">
         <runs />
         <clobbers target="StartAppAds" />
+        <clobbers target="StartIO" />
     </js-module>
     <engines>
         <engine name="cordova" version="&gt;=7.0.0" />

@@ -158,27 +158,32 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       public void onReceiveAd(View banner) {
         Log.d(TAG, "Banner has been loaded!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.load');");
+        cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.banner.load');");
       }
 
       @Override
       public void onFailedToReceiveAd(View banner) {
         Log.d(TAG, "Banner load failed!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.load_fail');");
+        cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.banner.load_fail');");
       }
 
       @Override
       public void onClick(View banner) {
         Log.d(TAG, "Banner clicked!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.clicked');");
+        cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.banner.clicked');");
       }
 
       @Override
       public void onImpression(View banner) {
         Log.d(TAG, "Banner impression!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.impression');");
+        cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.banner.impression');");
       }
     });
     cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.load.req');");
+    cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.banner.load.req');");
 
     // Forcing specefic banner dimensions to prevent other formats from loading
     startAppBanner.loadAd(320, 50); // Standard Banner
@@ -220,6 +225,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         parentView = null;
         startAppBanner = null;
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.banner.hide');");
+        cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.banner.hide');");
     }
   }
 
@@ -232,24 +238,28 @@ public class StartAppAdsPlugin extends CordovaPlugin {
                 public void adHidden(Ad ad) {
                   Log.d(TAG, "Interstitial has been closed!");
                   cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.interstitial.closed');");
+                  cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.interstitial.closed');");
                 }
 
                 @Override
                 public void adDisplayed(Ad ad) {
                   Log.d(TAG, "Interstitial displayed!");
                   cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.interstitial.displayed');");
+                  cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.interstitial.displayed');");
                 }
 
                 @Override
                 public void adClicked(Ad ad) {
                   Log.d(TAG, "Interstitial Ad clicked!");
                   cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.interstitial.clicked');");
+                  cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.interstitial.clicked');");
                 }
 
                 @Override
                 public void adNotDisplayed(Ad ad) {
                   Log.d(TAG, "Interstitial Ad not displayed!");
                   cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.interstitial.not_displayed');");
+                  cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.interstitial.not_displayed');");
                 }
             });
         }
@@ -258,6 +268,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         public void onFailedToReceiveAd(Ad ad) {
           Log.d(TAG, "Failed to Receive Interstitial!");
           cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.interstitial.load_fail');");
+          cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.interstitial.load_fail');");
         }
     });
   }
@@ -270,6 +281,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       public void onVideoCompleted() {
         Log.d(TAG, "Video Reward can be given now!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.reward');");
+        cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.reward_video.reward');");
       }
     });
 
@@ -278,6 +290,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       public void onReceiveAd(Ad arg0) {
           Log.d(TAG, "Reward Video loaded!");
           cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.load');");
+          cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.reward_video.load');");
 
           if (autoShow) {
             Log.d(TAG, "Video Reward auto show!");
@@ -289,6 +302,7 @@ public class StartAppAdsPlugin extends CordovaPlugin {
       public void onFailedToReceiveAd(Ad arg0) {
         Log.d(TAG, "Failed to load Rewarded Video Ad!");
         cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.load_fail');");
+        cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.reward_video.load_fail');");
       }
     });
   }
@@ -301,21 +315,25 @@ public class StartAppAdsPlugin extends CordovaPlugin {
         public void adHidden(Ad ad) {
           Log.d(TAG, "Rewarded Video closed!");
           cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.closed');");
+          cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.reward_video.closed');");
         }
         @Override
         public void adClicked(Ad ad) {
           Log.d(TAG, "Rewarded Video clicked!");
           cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.clicked');");
+          cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.reward_video.clicked');");
         }
         @Override
         public void adDisplayed(Ad ad) {
           Log.d(TAG, "Reward Video displayed!");
           cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.displayed');");
+          cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.reward_video.displayed');");
         }
         @Override
         public void adNotDisplayed(Ad ad) {
           Log.d(TAG, "Rewarded Video not displayed");
           cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startappads.reward_video.not_displayed');");
+          cWebView.loadUrl("javascript:cordova.fireDocumentEvent('startio.reward_video.not_displayed');");
         }
       });
     } else {

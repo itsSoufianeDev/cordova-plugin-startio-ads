@@ -1,7 +1,6 @@
-var cordova = require('cordova');
 var exec = require('cordova/exec');
 
-var StartAppAds = {
+var StartIO = {
 	init: function(appid, options, testAds) {
 		var DEFAULT_OPTIONS = { returnAd: true, splashAd: true };
 
@@ -13,7 +12,7 @@ var StartAppAds = {
 	setConsent: function(consented) {
 		exec(function(){}, function(){}, "StartAppAdsPlugin", "setConsent", [ consented ]);
 	},
-	setIABUSPrivacyString: function(IABString){
+	setIABUSPrivacy: function(IABString){
 		exec(function(){}, function(){}, "StartAppAdsPlugin", "setIABUSPrivacyString", [ IABString ]);
 	},
 	loadBanner: function() {
@@ -37,4 +36,7 @@ var StartAppAds = {
 	}
 }
 
+var StartAppAds = StartIO
+
+module.exports = StartIO;
 module.exports = StartAppAds;
