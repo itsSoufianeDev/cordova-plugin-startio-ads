@@ -37,15 +37,15 @@ cordova plugin remove cordova-plugin-startio-ads
 
 ## Plugin Methods
 
-* ### ** init**(appid: string, options: object, testAds: boolean): void 
-* ### ** setConsent**(consent: boolean): void
-* ### ** setIABUSPrivacy**(IABString: string): void
-* ### ** loadBanner**(): void
-* ### ** showBanner**(): void
-* ### ** hideBanner**(): void
-* ### ** showInterstitial**(): void
-* ### ** loadRewardVideo**(autoShow: boolean): void
-* ### ** showRewardVideo()**: void
+* **init**(appid: string, options: object, testAds: boolean): void 
+* **setConsent**(consent: boolean): void
+* **setIABUSPrivacy**(IABString: string): void
+* **loadBanner**(): void
+* **showBanner**(): void
+* **hideBanner**(): void
+* **showInterstitial**(): void
+* **loadRewardVideo**(autoShow: boolean): void
+* **showRewardVideo()**: void
 <br/>
 
 ## Usage
@@ -79,7 +79,7 @@ StartIO.setIABUSPrivacy("1YNN") // CCPA
 ### 3. Banner Ads
 
 To show a Banner ad you need to call loadBanner() and listen to the `startio.banner.load` event then call showBanner().<br/>
-**IMPORTANT: Do not call loadBanner() from within `startio.banner.load_fail`. The SDK will automatically try to reload an ad upon a failure. **
+**IMPORTANT: Do not call loadBanner() from within `startio.banner.load_fail`. The SDK will automatically try to reload an ad upon a failure.**
 
 ```js
 
