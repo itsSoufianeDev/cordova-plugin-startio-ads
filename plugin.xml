@@ -17,7 +17,7 @@
         <engine name="cordova-android" version="&gt;=6.0.0" />
     </engines>
     <platform name="android">
-        <config-file mode="merge" parent="/manifest/application" target="AndroidManifest.xml">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
 
             <meta-data android:name="com.startapp.sdk.RETURN_ADS_ENABLED" android:value="false" />
             <meta-data android:name="com.startapp.sdk.SPLASH_ENABLED" android:value="false" />
@@ -55,7 +55,7 @@
 
         </config-file>
 
-        <config-file mode="merge" parent="/*" target="AndroidManifest.xml">
+        <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
